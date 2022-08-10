@@ -138,3 +138,8 @@ Also from angular.json
 Animation
 npm install animate.css --save
 
+nx build ngshop --prod --output-path docs --base-href /ngshop/
+ rm -rf ./node_modules/.cache/nx
+
+nx build ngshop  
+

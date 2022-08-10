@@ -42,9 +42,9 @@ emptyCart() {
 
 setCartItem(cartItem: CartItem, updateCartItem?: boolean): Cart {
   const cart = this.getCart();
-  const cartItemExist = cart.items.find((item) => item.productId === cartItem.productId);
+  const cartItemExist = cart?.items?.find((item) => item.productId === cartItem.productId);
   if (cartItemExist) {
-    cart.items.map((item) => {
+    cart?.items?.map((item) => {
       if (item.productId === cartItem.productId) {
         if (updateCartItem) {
          
@@ -57,7 +57,7 @@ setCartItem(cartItem: CartItem, updateCartItem?: boolean): Cart {
       }
     });
   } else {
-    cart.items.push(cartItem);
+    cart?.items?.push(cartItem);
   }
 
   const cartJson = JSON.stringify(cart);
@@ -68,7 +68,7 @@ setCartItem(cartItem: CartItem, updateCartItem?: boolean): Cart {
 
 deleteCartItem(productId: string) {
   const cart = this.getCart();
-  const newCart = cart.items.filter((item) => item.productId !== productId);
+  const newCart = cart?.items?.filter((item) => item.productId !== productId);
 
   cart.items = newCart;
 
