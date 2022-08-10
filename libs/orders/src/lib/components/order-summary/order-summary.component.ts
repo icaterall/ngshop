@@ -35,9 +35,9 @@ export class OrderSummaryComponent implements OnInit, OnDestroy {
     this.cartService.cart$.pipe(takeUntil(this.endSubs$)).subscribe((cart) => {
       this.totalPrice = 0;
       if (cart) {
-        cart.items.map((item) => {
+        cart?.items?.map((item) => {
           this.ordersService
-            .getProduct(item.productId)
+            .getProduct(item?.productId)
             .pipe(take(1))//Take one and release
             .subscribe((product) => {
               this.totalPrice += product.price * item.quantity;

@@ -13,13 +13,13 @@ export class CartService {
 
   initCartLocalStorage() {
     const cart: Cart = this.getCart();
-    if (!cart) {
+
       const intialCart = {
         items: []
       };
       const intialCartJson = JSON.stringify(intialCart);
       localStorage.setItem(CART_KEY, intialCartJson);
-    }
+  
   }
 
 
