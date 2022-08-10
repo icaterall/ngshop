@@ -1,0 +1,140 @@
+npm install -g @angular/cli
+Is just to install angular globally as well as for npm install -g nx
+
+
+
+
+
+To start building new angular project, inside your whole project folder you go and run this command
+
+npx create-nx-workspace --preset=angular
+
+Then you will be asked for the workspace name (the project name)
+
+Then the first application name, as we will have many applications
+Select .scss
+
+Using nx cloud? No
+-------
+Now open the project workspace you just created
+
+To create another application which is the admin dashboard
+nx generate @nrwl/angular:app admin
+Routing? Yes
+
+
+------
+To disable error of variables type, we go to application folder, tsconfig.json and set compilerOptions and angularCompilerOptions to be false
+
+------
+To run the application
+Nx serve ngshop  --port 4100 (specify the port)
+-------
+Delete default page, go to srce/app/app.componenet.html delete everything 
+
+---------
+Create component for every app
+nx g component home-page --project=ngshop
+
+This is similar to larval where we Have view->home->products or contacts .. etc
+----
+app.Component.html will read the first route
+-----
+
+App.module.ts contains all components models
+
+---------
+To get selector ->go to hompe-page.components.ts (home-page here can be homepage, product-list ..etc)
+
+Paste selector in component.html <selector></selector> will show us the page of this selector in the browser
+
+-------
+
+Creating Route
+
+In app.module.ts:
+
+Add the library import { RouterModule } from '@angular/router';
+go to imports:[] and add RouterModule.forRoot([{}])
+
+Where every route will be in this way
+
+{
+    path:'',
+    component:HomePageComponent
+  }
+
+We can set routes array in variables so we have clean code
+
+
+
+Now in app.component.html we remove the selector and add the router outlet
+<router-outlet></router-outlet>
+
+------- Manage error formula
+eslintrc.json in every application
+Go to prefix change to your own
+
+--------
+For global eslintrc use this
+After angular.eslint/component-selctor
+],
+Add this
+
+            "no-empty-function": "off",
+            "@typescript-eslint/no-empty-function": "off"   
+
+
+---------
+
+Creating libraries
+npx nx g @nrwl/workspace:lib ui
+
+--------
+
+Create component 
+schematics/angular:component
+Or by command
+
+nx generate @schematics/angular:component slider --project=ui --style=scss --export --prefix=ui --selector=slider 
+We use this link to create slider and banner
+We want to import the module, then we will use the path
+The path is define in the tsconfig.base.jdon file
+This is the concept when you want to export modules, classes or models
+So from the index file in lib/ui/src/index.ts 
+So we add export * from './lib/ui.module'
+
+So everything you need to use outside of this library you need to export it
+
+Then to import it for using, we go to app.module.ts and in the imports:[] we added the name and in the top of the file we import it in this way
+
+import {UiModule} from "@bluebits/ui";
+
+Where "@bluebits/ui" is found in the tsconfig.base which refer to the index.ts path
+-------
+mkdir styles
+We create share folder for styles
+---------
+
+npm install primeng --save
+
+npm install primeicons --save
+
+npm install primeflex --save
+-----
+npm install @angular/cdk --save
+
+
+
+npm install normalize.css to initiliazea webpage and html code from the beginning
+
+npm install i18n-iso-countries
+
+--------
+Remove lib from nx.json
+Also from tsconfig.base.json
+Also from angular.json
+------
+Animation
+npm install animate.css --save
+
